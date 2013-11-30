@@ -9,6 +9,10 @@ myCanvas.innerText = " ";
 var ctx = myCanvas.getContext("2d");
 var animCycle = 0;
 
+function animation(){
+    drawAll();
+    setInterval(function(){drawAll()}, 100);
+}
 
 function drawHouse() {
     ctx.beginPath();
@@ -48,37 +52,6 @@ function drawHouse() {
     ctx.fillStyle = "green";
     ctx.fill();
     ctx.stroke();
-}
-
-function animation(){
-    drawHouse();
-    drawExtra();
-    setInterval(function(){drawAll()}, 100);
-}
-
-function drawAll(){
-	ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
-    drawHouse();
-    drawSmoke();
-    drawExtra();
-    if(animCycle < 50){
-        animCycle++;
-    }else{
-        animCycle = 0;
-    }
-}
-
-function drawExtra(){
-    //sun
-    var x = 30;
-    var y = 30;
-    var radius = 50;
-    var startAngle = 0;
-    var endAngle = 2 * Math.PI
-    ctx.beginPath();
-    ctx.arc(x, y, radius, startAngle, endAngle);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
 
     //chimney front
     ctx.beginPath();
@@ -107,6 +80,66 @@ function drawExtra(){
     ctx.fillStyle = "brown";
     ctx.fill();
     ctx.stroke();
+
+    //door
+    ctx.beginPath();
+    ctx.moveTo(110, 234);
+    ctx.lineTo(107, 191);
+    ctx.lineTo(136, 193);
+    ctx.lineTo(138, 236);
+    ctx.lineWidth = 2;
+    ctx.fillStyle = "brown";
+    ctx.fill();
+    ctx.stroke();
+}
+
+
+function drawAll(){
+	ctx.clearRect(0, 0, myCanvas.width, myCanvas.height);
+    drawExtra();
+    drawHouse();
+    drawSmoke();
+    if(animCycle < 50){
+        animCycle++;
+    }else{
+        animCycle = 0;
+    }
+}
+
+function drawExtra(){
+
+    //Grass
+    var x = 00;
+    var y = 150;
+    var w = 500;
+    var h = 300;
+    ctx.beginPath();
+    ctx.rect(x,y,w,h);
+    ctx.fillStyle = "rgba(0, 255, 0, 0.2)";
+    ctx.fill();
+
+    
+    //Sky
+    var x = 00;
+    var y = 0;
+    var w = 500;
+    var h = 150;
+    ctx.beginPath();
+    ctx.rect(x,y,w,h);
+    ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+    ctx.fill();
+    
+    //sun
+    var x = 30;
+    var y = 30;
+    var radius = 50;
+    var startAngle = 0;
+    var endAngle = 2 * Math.PI
+    ctx.beginPath();
+    ctx.arc(x, y, radius, startAngle, endAngle);
+    ctx.fillStyle = "yellow";
+    ctx.fill();
+
 }
 
 function drawSmoke(){
