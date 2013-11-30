@@ -61,7 +61,7 @@ function drawAll(){
     drawHouse();
     drawSmoke();
     drawExtra();
-    if(animCycle < 50){
+    if(animCycle < 100){
         animCycle++;
     }else{
         animCycle = 0;
@@ -122,39 +122,25 @@ function drawSmoke(){
     var radius = 10;
     var startAngle = 0;
     var endAngle = 2 * Math.PI;
+    
 
-    for (var count = 0; count < 30; count++) {
+    for (var count = 0; count < animCycle; count++) {
         var rand = Math.random() * 10;
-        y += rand;
+        x += rand;
         ctx.beginPath();
-        ctx.arc(x, y, radius, startAngle, endAngle);
-        ctx.fillStyle = "rgba(100, 100, 100, 0.5)";
+        ctx.arc(x + 0.4 * count, 90 - 2 * count, radius, startAngle, endAngle);
+        ctx.fillStyle = "rgba(100, 100, 100, 0.1)";
         ctx.fill();
-        x += animCycle * 0.1 + 0.1;
-        y -= rand;    
-        x2 = x;
-        for (var count1 = 0; count1 < 10; count1++) {
-            var rand = Math.random() * 10;
-            y2 += rand;
-            ctx.beginPath();
-            ctx.arc(x, y2, radius, startAngle, endAngle);
-            ctx.fillStyle = "rgba(100, 100, 100, 0.2)";
-            ctx.fill();
-            x2 += animCycle * 0.1 + 0.1
-            y2 -= rand;
-        }
-        y2 += 2;
-        for (var count1 = 0; count1 < 5; count1++) {
-            var rand = Math.random() * 10;
-            y2 += rand;
-            ctx.beginPath();
-            ctx.arc(x, y2, radius, startAngle, endAngle);
-            ctx.fillStyle = "rgba(100, 100, 100, 0.2)";
-            ctx.fill();
-            x2 += animCycle * 0.1 + 0.1
-            y2 -= rand;
-        }
-        y2 -= 2;
+        x -= rand;
+    }
+    for (var count = 0; count < animCycle; count++) {
+        var rand = Math.random() * 10;
+        x += rand;
+        ctx.beginPath();
+        ctx.arc(x + 1 * count, 90 - 2 * count, radius, startAngle, endAngle);
+        ctx.fillStyle = "rgba(100, 100, 100, 0.1)";
+        ctx.fill();
+        x -= rand;
     }
 
 }
